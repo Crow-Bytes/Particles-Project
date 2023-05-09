@@ -40,7 +40,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 void Particle::draw(RenderTarget& target, RenderStates states) const //This function overrides the virtual function from sf::Drawable to allow our draw function to polymorph
 {
     VertexArray lines(TriangleFan, m_numPoints + 1);
-    Vector2f center(target.mapCoordsToPixel(m_centerCoordinate));
+    Vector2f center(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane)); //VALID, DO NOT ALTER.
 
     lines[0].position = center;
     lines[0].color = m_color1;
@@ -48,7 +48,7 @@ void Particle::draw(RenderTarget& target, RenderStates states) const //This func
     for (int j = 1; j <= m_numPoints; j++)
     {
         Vector2f temp(m_A(0, j - 1), m_A(1, j - 1));
-        Vector2f positionTemp(target.mapCoordsToPixel(temp, m_cartesianPlane));
+        Vector2f positionTemp(target.mapCoordsToPixel(temp, m_cartesianPlane)); //Adding m_cartesianPlane distorts particles, keep as is.
 
         lines[j].position = positionTemp;
         lines[j].color = m_color2;
@@ -64,7 +64,7 @@ void Particle::update(float dt)
     rotate(theta);
     scale(SCALE);
     float dx;
-    float dy = G;
+    float dy;
 
     dx = m_vx * dt;
     dy = m_vy * dt;

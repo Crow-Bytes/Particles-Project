@@ -63,6 +63,8 @@ void Engine::input()
 			getInput = false;
 
 			Vector2i mPos = Mouse::getPosition();
+			Vector2i positionTest(1000, 300);
+			mPos = positionTest;
 
 			cout << "Button Pressed At: " << endl
 				 << "x: " << Mouse::getPosition().x << endl
@@ -95,7 +97,7 @@ void Engine::update(float dtAsSeconds)
 	{
 		if (it->getTTL() > 0.0) 
 		{
-			cout << "TTL LEFT: " << it->getTTL() << endl;
+			//cout << "TTL LEFT: " << it->getTTL() << endl;
 
 			it->update(dtAsSeconds);
 			it++;
