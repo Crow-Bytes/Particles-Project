@@ -63,8 +63,8 @@ void Engine::input()
 			getInput = false;
 
 			Vector2i mPos = Mouse::getPosition();
-			Vector2i positionTest(1000, 300);
-			mPos = positionTest;
+			//Vector2i positionTest(1000, 300);	 UNUSED CODE *****************************TESTER
+			//mPos = positionTest;
 
 			cout << "Button Pressed At: " << endl
 				 << "x: " << Mouse::getPosition().x << endl

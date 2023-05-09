@@ -12,15 +12,15 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 
-    m_vx = (rand() % 401) + 100; // Professor's Range, Change if wanted.
+    m_vx = (rand() % 401) + 100; // Particles are given randomized initial horizontal speeds
     if ((rand() % 2) != 0)
     {
         m_vx *= -1;
     }
-    m_vy = (rand() % 401) + 100; // Professor's Range, Change if wanted.
+    m_vy = (rand() % 401) + 100; // Particles are given randomized initial vertical speeds
 
-    m_color1 = Color::White;
-    m_color2 = Color(rand() % 255, rand() % 255, rand() % 255);
+    m_color1 = Color(rand() % 128, rand() % 128, 0); // Random Color *****************************TESTER
+    m_color2 = Color(rand() % 240, 0, rand() % 240); // Random Color *****************************TESTER
 
     float theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
     float dTheta = (2 * M_PI) / (numPoints - 1);
@@ -48,7 +48,7 @@ void Particle::draw(RenderTarget& target, RenderStates states) const //This func
     for (int j = 1; j <= m_numPoints; j++)
     {
         Vector2f temp(m_A(0, j - 1), m_A(1, j - 1));
-        Vector2f positionTemp(target.mapCoordsToPixel(temp, m_cartesianPlane)); //Adding m_cartesianPlane distorts particles, keep as is.
+        Vector2f positionTemp(target.mapCoordsToPixel(temp, m_cartesianPlane)); //VALID, DO NOT ALTER.
 
         lines[j].position = positionTemp;
         lines[j].color = m_color2;
@@ -67,8 +67,11 @@ void Particle::update(float dt)
     float dy;
 
     dx = m_vx * dt;
+   // dy = m_vy * dt;
+    //dy -= (G * dt);
+    m_vy -= G * dt;
     dy = m_vy * dt;
-    dy -= G * dt;
+    
 
     translate(dx, dy);
 }
