@@ -12,18 +12,22 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 
-    m_vx = (rand() % 500 - 100 + 1) + 100; // Professor's Range, Change if wanted.
-    m_vy = ((rand() % 500 - 100 + 1) + 100) * (rand() % 2); // Professor's Range, Change if wanted.
+    m_vx = (rand() % 401) + 100; // Professor's Range, Change if wanted.
+    if ((rand() % 2) != 0)
+    {
+        m_vx *= -1;
+    }
+    m_vy = (rand() % 401) + 100; // Professor's Range, Change if wanted.
 
     m_color1 = Color::White;
-    m_color2 = Color::Green;
+    m_color2 = Color(rand() % 255, rand() % 255, rand() % 255);
 
     float theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
-    float dTheta = 2 * M_PI / (numPoints - 1);
+    float dTheta = (2 * M_PI) / (numPoints - 1);
 
     for (int j = 0; j < numPoints; j++)
     {
-        float r = rand() % (80 - 20 + 1) + 20;
+        float r = (rand() % 61) + 20;
         float dx = r * cos(theta);
         float dy = r * sin(theta);
         theta += dTheta;
@@ -36,36 +40,36 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 void Particle::draw(RenderTarget& target, RenderStates states) const //This function overrides the virtual function from sf::Drawable to allow our draw function to polymorph
 {
     VertexArray lines(TriangleFan, m_numPoints + 1);
-    Vector2f center(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane));
+    Vector2f center(target.mapCoordsToPixel(m_centerCoordinate));
 
     lines[0].position = center;
     lines[0].color = m_color1;
 
     for (int j = 1; j <= m_numPoints; j++)
     {
-        Vector2f temp(m_A(0, j - 1), m_A(0, j - 1));
+        Vector2f temp(m_A(0, j - 1), m_A(1, j - 1));
         Vector2f positionTemp(target.mapCoordsToPixel(temp, m_cartesianPlane));
 
         lines[j].position = positionTemp;
         lines[j].color = m_color2;
     }
-
     target.draw(lines);
 }
 
 
 void Particle::update(float dt)
 {
-    m_ttl -= dt;
+    m_ttl = m_ttl - dt;
     double theta = dt * m_radiansPerSec;
     rotate(theta);
     scale(SCALE);
     float dx;
-    float dy = 0;
+    float dy = G;
 
     dx = m_vx * dt;
-    dy -= G * dt;
     dy = m_vy * dt;
+    dy -= G * dt;
+
     translate(dx, dy);
 }
 

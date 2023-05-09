@@ -29,8 +29,11 @@ void Engine::run()
 
 	while (m_Window.isOpen()) //Loop while m_Window is open
 	{
-		frameTime.restart(); // Restart the clock (this will return the time elapsed since the last frame)
 		float frameTimeSeconds = frameTime.getElapsedTime().asSeconds(); //Convert the clock time to seconds
+
+		frameTime.restart(); // Restart the clock (this will return the time elapsed since the last frame)
+		
+
 
 		//				Call Input				//
 		input();
@@ -50,34 +53,31 @@ void Engine::input()
 	{
 
 		//Handle Inputs to {Close Window}
-		if (event.key.code == sf::Keyboard::Escape)  // Handle the Escape key pressed and closed events so your program can exit
+		if (event.key.code == Keyboard::Escape || Event::Closed)  // Handle the Escape key pressed and closed events so your program can exit
 		{
-			cout << "Escape Button Pressed." << endl;
 			m_Window.close();
 		}
-
 		//Create a loop to construct #(5) particles (Any # of particles)
-		if (event.key.code == Mouse::isButtonPressed(Mouse::Left))
+		if ((event.key.code == Mouse::isButtonPressed(Mouse::Left) && getInput))
 		{
 			getInput = false;
+
+			Vector2i mPos = Mouse::getPosition();
+
 			cout << "Button Pressed At: " << endl
-				<< "x: " << Mouse::getPosition().x << endl
-				<< "y: " << Mouse::getPosition().y << endl;
-			Vector2i mPos;
-			mPos = Mouse::getPosition();
-			//mPos.x = -810; //May need to specify m_Window in getPosition
-			//mPos.y = 675;
+				 << "x: " << Mouse::getPosition().x << endl
+			 	 << "y: " << Mouse::getPosition().y << endl;
 
 			for (int i = 0; i < 5; i++)
 			{
-				
 				//numPoints is a random number in the range [25:50] (you can experiment with this too)
 				int numPoints = rand() % 26 + 25;
 				//Pass the position of the mouse click into the constructor
 				
-				m_particles.emplace_back(m_Window, 30, mPos); //Unsure when numPoints, target is m_Window or View Object.
-
+				Particle pTemp(m_Window, numPoints, mPos); //Unsure when numPoints, target is m_Window or View Object.
+				m_particles.push_back(pTemp);
 			}
+
 			if (event.type == Event::KeyReleased)
 			{
 				getInput = true;
@@ -91,16 +91,20 @@ void Engine::update(float dtAsSeconds)
 {
 	//Loop thru m_particles and call update on each Particle in the vector whose ttl isnt expired.
 
-	for (int i = 0; i < m_particles.size(); i = i + 0)
+	for (auto it = m_particles.begin(); it != m_particles.end();)
 	{
-		if (m_particles.at(i).getTTL() > 0.0)
+		if (it->getTTL() > 0.0) 
 		{
-			m_particles.at(i).update(dtAsSeconds);
-			i++;
+			cout << "TTL LEFT: " << it->getTTL() << endl;
+
+			it->update(dtAsSeconds);
+			it++;
 		}
 		else
 		{
-			 m_particles.erase(m_particles.begin() + i); //erase the element the iterator points to
+			 it = m_particles.erase(it); //erase the element the iterator points to
+
+			 cout << "Particle Killed" << endl;
 			//erase returns an iterator that points to the next element after deletion, or end if it is the end of the vector
 		}
 	}
