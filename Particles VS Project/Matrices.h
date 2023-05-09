@@ -79,6 +79,7 @@ namespace Matrices
         */
         ///theta represents the angle of rotation in radians, counter-clockwise
         RotationMatrix(double theta);
+        Matrix r(int _row, int _col);
     };
 
     ///2D scaling matrix

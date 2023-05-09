@@ -1,0 +1,44 @@
+﻿  Engine.cpp
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(5,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(8,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\VS Projects\Particles Rep\Particles VS Project\Engine.cpp(65,43): warning C4805: '==': unsafe mix of type 'sf::Event::EventType' and type 'bool' in operation
+C:\VS Projects\Particles Rep\Particles VS Project\Engine.cpp(88,20): warning C4018: '<': signed/unsigned mismatch
+  Matrices.cpp
+  Particle.cpp
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(5,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(8,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(10,57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(10,46): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(14,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(15,45): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(25,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(45,41): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(45,26): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(74,35): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(75,35): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  main.cpp
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(5,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.h(8,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+C:\VS Projects\Particles Rep\Particles VS Project\Particle.cpp(65): warning C4700: uninitialized local variable 'dy' used
+LINK : fatal error LNK1104: cannot open file 'sfml-graphics-d.lib'
