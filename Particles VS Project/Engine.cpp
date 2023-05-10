@@ -53,7 +53,7 @@ void Engine::input()
 	{
 
 		//Handle Inputs to {Close Window}
-		if (event.key.code == Keyboard::Escape || Event::Closed)  // Handle the Escape key pressed and closed events so your program can exit
+		if (event.key.code == Keyboard::Escape || event.type == Event::Closed)  // Handle the Escape key pressed and closed events so your program can exit
 		{
 			m_Window.close();
 		}

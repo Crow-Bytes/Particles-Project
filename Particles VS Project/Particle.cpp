@@ -19,8 +19,8 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     }
     m_vy = (rand() % 401) + 100; // Particles are given randomized initial vertical speeds
 
-    m_color1 = Color(rand() % 128, rand() % 128, 0); // Random Color *****************************TESTER
-    m_color2 = Color(rand() % 240, 0, rand() % 240); // Random Color *****************************TESTER
+    m_color1 = Color(rand() % 128 + 120, rand() % 128 + 120, rand() % 128 + 120); // Random Color *****************************TESTER
+    m_color2 = Color(rand() % 124 + 125, 0, rand() % 125 + 125); // Random Color *****************************TESTER
 
     float theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
     float dTheta = (2 * M_PI) / (numPoints - 1);
