@@ -1,6 +1,3 @@
 ﻿  Engine.cpp
 C:\VS Projects\Particles-Project-main\Particles VS Project\Engine.cpp(61,48): warning C4805: '==': unsafe mix of type 'sf::Keyboard::Key' and type 'bool' in operation
-  Particle.cpp
-  main.cpp
-  Generating Code...
   Particles-ClassTest.vcxproj -> C:\VS Projects\Particles-Project-main\Particles VS Project\x64\Debug\Particles-ClassTest.exe
